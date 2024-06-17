@@ -10,7 +10,6 @@ let loaded = (eventLoaded) => {
     if (nombre.length == 0) {
 
       nombre.focus()
-
       alert('Ingrese un texto válido')
 
       return;
@@ -57,13 +56,19 @@ async function obtenerDatos() {
   }
   const datos = await respuesta.json();
   let favoritoTotales = new Map();
-  for(var key in datos){
+  for (var key in datos) {
     let elementos = datos[key];
     let favorito = elementos["favorito"];
-    let conteo = favoritoTotales.has(favorito)?favoritoTotales.get(favorito)+1:1;
-    favoritoTotales.set(favorito,conteo);
+    let conteo = favoritoTotales.has(favorito) ? favoritoTotales.get(favorito) + 1 : 1;
+    favoritoTotales.set(favorito, conteo);
   }
   console.log(datos); // Procesar o mostrar los datos obtenidos
+
+  const resultadosDiv = document.getElementById('resultados-votos');
+  resultadosDiv.innerHTML = ''; // Limpiar resultados anteriores
+  favoritoTotales.forEach((conteo, personaje) => {
+    resultadosDiv.innerHTML += `<p>Personaje Favorito: ${personaje}, Votos: ${conteo}</p>`;
+  });
 }
 obtenerDatos();
 
@@ -106,19 +111,4 @@ let loadVotes() =async()=>{};
     });
 
   })
-
-
-async function obtenerDatos() {
-  const url = "https://www.ejemplo.com/"; // Reemplaza con la URL real de la API o recurso
-  const respuesta = await fetch(url);
-  if (!respuesta.ok) {
-  console.error("Error:", respuesta.status);
-  return;
-  }
-  const datos = await respuesta.json();
-  console.log(datos); // Procesar o mostrar los datos obtenidos
-  }
-
-  obtenerDatos();*/
-
-
+*/

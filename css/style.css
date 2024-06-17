@@ -534,6 +534,7 @@ a {
   .blog-section .post-entry:hover .post-thumbnail img, .blog-section .post-entry:focus .post-thumbnail img {
     opacity: .7; }
 
+
 .footer-section {
   padding: 80px 0;
   background: #ffffff; }
@@ -709,3 +710,12 @@ textarea {
     height: 50px;
     border-radius: 50%;
     background: rgba(59, 93, 80, 0.2); }
+
+    .card {
+      width: 18rem; /* Ancho de la tarjeta */
+    }
+    
+    .card-img-top {
+      width: 100%; /* Hace que la imagen ocupe todo el ancho de la tarjeta */
+      height: auto; /* Mantiene la proporción de la imagen */
+    }
