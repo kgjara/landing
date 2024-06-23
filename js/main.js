@@ -8,19 +8,14 @@ let loaded = (eventLoaded) => {
     const favorito = document.getElementById('favorito').value;
 
     if (nombre.length == 0) {
-
+      alert("Ingrese su nombre");
       nombre.focus()
-      alert('Ingrese un texto válido')
-
       return;
     }
 
     if (email.length == 0) {
-
+      alert("Ingrese su email")
       email.focus()
-
-      alert('Ingrese un texto válido')
-
       return;
     }
 
@@ -40,9 +35,9 @@ let loaded = (eventLoaded) => {
       .then(respuesta => respuesta.json())
       .then(datos => {
         console.log(datos);
+        alert("Enviado correctamente")
       })
       .catch(error => console.error(error));
-
   })
 }
 window.addEventListener("DOMContentLoaded", loaded);
@@ -64,10 +59,18 @@ async function obtenerDatos() {
   }
   console.log(datos); // Procesar o mostrar los datos obtenidos
 
-  const resultadosDiv = document.getElementById('resultados-votos');
-  resultadosDiv.innerHTML = ''; // Limpiar resultados anteriores
-  favoritoTotales.forEach((conteo, personaje) => {
-    resultadosDiv.innerHTML += `<p>Personaje Favorito: ${personaje}, Votos: ${conteo}</p>`;
+
+  const tablebody = document.getElementById('tablebody');
+  tablebody.innerHTML = '';  // Limpiar el contenido existente
+
+  favoritoTotales.forEach((conteo, favorito) => {
+    const template = `
+                    <tr>
+                        <td>${favorito}</td>
+                        <td>${conteo}</td>
+                    </tr>
+                `;
+    tablebody.innerHTML += template;
   });
 }
 obtenerDatos();
@@ -79,36 +82,4 @@ obtenerDatos();
 
   }
 }
-
-let loadVotes() =async()=>{};
-
-
-    const formulario = document.getElementById('formulario');
-    formulario.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const nombre = document.getElementById('nombre').value;
-      const email = document.getElementById('email').value;
-      const recomendacion = document.getElementById('recomendacion').value;
-      const datos = {
-        nombre: nombre,
-        email: email,
-        recomendacion: recomendacion
-      };
-      fetch('https://deep-clock-284401-default-rtdb.firebaseio.com/coleccion.json', {
-        method: 'POST',
-        body: JSON.stringify(datos),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(respuesta => respuesta.json())
-        .then(datos => {
-          console.log(datos);
-          alert("respuesta enviada")
-          servidor
-        })
-        .catch(error => console.error(error));
-    });
-
-  })
 */
